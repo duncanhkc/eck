@@ -1,23 +1,23 @@
 apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
-  name: {{ template "docker-registry.fullname" . }}-es
+  name: {{ template "eck.fullname" . }}-es
   labels:
-    app: {{ template "docker-registry.name" . }}
+    app: {{ template "eck.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
 spec:
   version: 7.10.1
   nodeSets:
-    - name: {{ template "docker-registry.fullname" . }}-es
+    - name: {{ template "eck.fullname" . }}-es
       config:
         node.store.allow_mmap: false
       podTemplate:
         metadata:
-          name: {{ template "docker-registry.fullname" . }}-es
+          name: {{ template "eck.fullname" . }}-es
           labels:
-            app: {{ template "docker-registry.name" . }}
+            app: {{ template "eck.name" . }}
             chart: {{ .Chart.Name }}-{{ .Chart.Version }}
             heritage: {{ .Release.Service }}
             release: {{ .Release.Name }}
@@ -34,9 +34,9 @@ spec:
       count: 1
       volumeClaimTemplates:
         - metadata:
-            name: {{ template "docker-registry.fullname" . }}-vc
+            name: {{ template "eck.fullname" . }}-vc
               labels:
-                app: {{ template "docker-registry.name" . }}
+                app: {{ template "eck.name" . }}
                 chart: {{ .Chart.Name }}-{{ .Chart.Version }}
                 heritage: {{ .Release.Service }}
                 release: {{ .Release.Name }}
