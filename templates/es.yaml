@@ -1,46 +1,36 @@
 apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
-  name: quickstart
+  name: elasticsearch
   labels:
-    app: {{ template "eck.name" . }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
-    heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+    app: elasticsearch
 spec:
   version: 7.10.1
   nodeSets:
     - name: default
-      labels:
-        app: {{ template "eck.name" . }}
-        chart: {{ .Chart.Name }}-{{ .Chart.Version }}
-        heritage: {{ .Release.Service }}
-        release: {{ .Release.Name }}
       config:
         node.store.allow_mmap: false
       podTemplate:
         metadata:
+          name: elasticsearch
           labels:
-            plm-tag: plm-es
+            app: elasticsearch
         spec:
           containers:
             - name: elasticsearch
               resources:
                 limits:
-                  memory: 4Gi
+                  memory: 5Gi
                   cpu: 1
               env:
                 - name: ES_JAVA_OPTS
-                  value: "-Xms2g -Xmx2g"
+                  value: "-Xms4g -Xmx4g"
       count: 1
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data
             labels:
-              app: {{ template "eck.name" . }}
-              chart: {{ .Chart.Name }}-{{ .Chart.Version }}
-              heritage: {{ .Release.Service }}
-              release: {{ .Release.Name }}
+              app: elasticsearch
           spec:
             accessModes:
               - ReadWriteOnce
