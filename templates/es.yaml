@@ -1,0 +1,49 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: {{ template "docker-registry.fullname" . }}-es
+  labels:
+    app: {{ template "docker-registry.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+spec:
+  version: 7.10.1
+  nodeSets:
+    - name: {{ template "docker-registry.fullname" . }}-es
+      config:
+        node.store.allow_mmap: false
+      podTemplate:
+        metadata:
+          name: {{ template "docker-registry.fullname" . }}-es
+          labels:
+            app: {{ template "docker-registry.name" . }}
+            chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+            heritage: {{ .Release.Service }}
+            release: {{ .Release.Name }}
+        spec:
+          containers:
+            - name: elasticsearch
+              resources:
+                limits:
+                  memory: 4Gi
+                  cpu: 1
+              env:
+                - name: ES_JAVA_OPTS
+                  value: "-Xms2g -Xmx2g"
+      count: 1
+      volumeClaimTemplates:
+        - metadata:
+            name: {{ template "docker-registry.fullname" . }}-vc
+              labels:
+                app: {{ template "docker-registry.name" . }}
+                chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+                heritage: {{ .Release.Service }}
+                release: {{ .Release.Name }}
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 2Gi
+            storageClassName: nfs-client
