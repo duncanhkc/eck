@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/affinity-mode: persistent
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-hash: sha1
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-name: kibana-ingress-session
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: kibana
+  namespace: eck-kibana
+spec:
+  rules:
+    - host: linxta-rakibana.garmin.com
+      http:
+        paths:
+          - backend:
+              serviceName: kibana-kb-http
+              servicePort: port1
+            pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - linxta-rakibana.garmin.com

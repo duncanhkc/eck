@@ -20,12 +20,11 @@ spec:
             - name: elasticsearch
               resources:
                 limits:
-                  memory: 5Gi
-                  cpu: 1
+                  cpu: 2
               env:
                 - name: ES_JAVA_OPTS
-                  value: "-Xms4g -Xmx4g"
-      count: 1
+                  value: "-Xms2g -Xmx8g"
+      count: 2
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data

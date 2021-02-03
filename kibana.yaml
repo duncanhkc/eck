@@ -1,0 +1,38 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: kibana
+  labels:
+    app: kibana
+spec:
+  version: 7.10.1
+  config:
+    server.host: 0.0.0.0
+  count: 1
+  elasticsearchRef:
+    name: "elasticsearch"
+    namespace: "eck-es"
+  http:
+    # Since Ingress provide https as the entry point. It should be OK to use http inside cloud.
+    tls:
+      selfSignedCertificate:
+        disabled: true
+    service:
+      spec:
+        type: NodePort
+        ports:
+          - name: port1
+            port: 443
+            targetPort: 5601
+            nodePort: 30125
+  podTemplate:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+        - name: kibana
+          resources:
+            limits:
+              memory: 2Gi
+              cpu: 1

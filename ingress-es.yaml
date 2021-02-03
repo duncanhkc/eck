@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/affinity-mode: persistent
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-hash: sha1
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-name: es-ingress-session
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: elasticsearch
+  namespace: eck-es
+spec:
+  rules:
+    - host: linxta-raes.garmin.com
+      http:
+        paths:
+          - backend:
+              serviceName: elasticsearch-es-http
+              servicePort: https
+            pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - linxta-raes.garmin.com
