@@ -35,11 +35,11 @@ spec:
       volumeClaimTemplates:
         - metadata:
             name: {{ template "eck.fullname" . }}-vc
-              labels:
-                app: {{ template "eck.name" . }}
-                chart: {{ .Chart.Name }}-{{ .Chart.Version }}
-                heritage: {{ .Release.Service }}
-                release: {{ .Release.Name }}
+            labels:
+              app: {{ template "eck.name" . }}
+              chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+              heritage: {{ .Release.Service }}
+              release: {{ .Release.Name }}
           spec:
             accessModes:
               - ReadWriteOnce
