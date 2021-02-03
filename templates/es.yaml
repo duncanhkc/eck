@@ -1,7 +1,7 @@
 apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
-  name: {{ template "eck.fullname" . }}-es
+  name: quickstart
   labels:
     app: {{ template "eck.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
@@ -10,17 +10,18 @@ metadata:
 spec:
   version: 7.10.1
   nodeSets:
-    - name: {{ template "eck.fullname" . }}-es
+    - name: default
+      labels:
+        app: {{ template "eck.name" . }}
+        chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+        heritage: {{ .Release.Service }}
+        release: {{ .Release.Name }}
       config:
         node.store.allow_mmap: false
       podTemplate:
         metadata:
-          name: {{ template "eck.fullname" . }}-es
           labels:
-            app: {{ template "eck.name" . }}
-            chart: {{ .Chart.Name }}-{{ .Chart.Version }}
-            heritage: {{ .Release.Service }}
-            release: {{ .Release.Name }}
+            plm-tag: plm-es
         spec:
           containers:
             - name: elasticsearch
@@ -34,7 +35,7 @@ spec:
       count: 1
       volumeClaimTemplates:
         - metadata:
-            name: {{ template "eck.fullname" . }}-vc
+            name: elasticsearch-data
             labels:
               app: {{ template "eck.name" . }}
               chart: {{ .Chart.Name }}-{{ .Chart.Version }}
