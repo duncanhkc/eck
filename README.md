@@ -8,7 +8,7 @@ Note:
 
 ## ECK Deploy steps
 
-1. Create namespaces, eck-nfs, eck-elastic-system, eck-es and eck-kibana, via rancher UI if you want to use project feature in Rancher.
+1. Create Project eck via rancher ui. Then create namespaces, eck-nfs, eck-elastic-system, eck-es and eck-kibana under it.
 
 2. Deploy nfs in eck-nfs.
    ```bash
