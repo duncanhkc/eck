@@ -8,22 +8,34 @@ spec:
   version: 7.10.1
   nodeSets:
     - name: default
-      config:
-        node.store.allow_mmap: false
+      #      config:
+      #        node.store.allow_mmap: false
       podTemplate:
         metadata:
           name: elasticsearch
           labels:
             app: elasticsearch
         spec:
+          # Allow virtual memory mapping
+          initContainers:
+            - name: sysctl
+              securityContext:
+                privileged: true
+              command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
           containers:
             - name: elasticsearch
               resources:
                 limits:
-                  cpu: 2
+                  # Must be more than twice the value jvm used
+                  memory: 12Gi
+                  cpu: 1500m
+                requests:
+                  memory: 12Gi
+                  cpu: 1500m
               env:
                 - name: ES_JAVA_OPTS
-                  value: "-Xms2g -Xmx8g"
+                  # Currently there are bugs if we assign mem more than 8g
+                  value: "-Xms6g -Xmx6g"
       count: 2
       volumeClaimTemplates:
         - metadata:
@@ -35,5 +47,6 @@ spec:
               - ReadWriteOnce
             resources:
               requests:
-                storage: 2Gi
+                # NFS is used and NFS provisioner doesn't restrict the size of the pv
+                storage: 1Mi
             storageClassName: nfs-client
