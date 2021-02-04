@@ -10,7 +10,7 @@ Note:
 
 1. Create Project eck via rancher ui. Then create namespaces, eck-nfs, eck-elastic-system, eck-es and eck-kibana under it.
 
-2. Deploy nfs in eck-nfs.
+2. Deploy nfs in eck-nfs. (nfs helm source: https://linxpa-gitlab00.garmin.com/huangduncan/nfs-client-provisioner.helm)
    ```bash
    helm install nfs-client {path_to_nfs_helm} -n eck-nfs
    ```

@@ -22,7 +22,7 @@ spec:
         type: NodePort
         ports:
           - name: port1
-            port: 443
+            port: 80
             targetPort: 5601
             nodePort: 30125
   podTemplate:
