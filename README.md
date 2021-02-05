@@ -1,4 +1,6 @@
 # ECK
+
+This project IS NOT a helm chart yet !!!
  
 This project elaborate how to deploy an eck in K8s. Write helm charts for them if needed in the future.
  
@@ -8,7 +10,7 @@ Note:
 
 ## ECK Deploy steps
 
-1. Create Project eck via rancher ui. Then create namespaces, eck-nfs, eck-elastic-system, eck-es and eck-kibana under it.
+1. Create project "eck" via rancher UI. Then create namespaces, eck-nfs, eck-elastic-system, eck-es and eck-kibana under it.
 
 2. Deploy nfs in eck-nfs. (nfs helm source: https://linxpa-gitlab00.garmin.com/huangduncan/nfs-client-provisioner.helm)
    ```bash
@@ -44,4 +46,6 @@ Note:
    kubectl apply -f ingress-es.yaml,ingress-kibana.yaml
    ```
    
-7. 使用瀏覽器瀏覽 https://linxta-raes.garmin.com 和 https://linxta-rakibana.garmin.com 。(帳密同 step 4)
+7. 修改 etc/hosts 令將 linxta-raes.garmin.com 和 linxta-rakibana.garmin.com 指向任一 Node 之 ip。 (For check only)
+
+8. 使用瀏覽器瀏覽 https://linxta-raes.garmin.com 和 https://linxta-rakibana.garmin.com 。(帳密同 step 4)
