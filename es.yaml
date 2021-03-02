@@ -27,11 +27,11 @@ spec:
               resources:
                 limits:
                   # Must be more than twice the value jvm used
-                  memory: 12Gi
                   cpu: 1500m
+                  memory: 12Gi
                 requests:
-                  memory: 12Gi
                   cpu: 1500m
+                  memory: 12Gi
               env:
                 - name: ES_JAVA_OPTS
                   # Currently there are bugs if we assign mem more than 8g

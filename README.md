@@ -14,7 +14,8 @@ Note:
 
 2. Deploy nfs in eck-nfs. (nfs helm source: https://linxpa-gitlab00.garmin.com/huangduncan/nfs-client-provisioner.helm)
    ```bash
-   helm install nfs-client {path_to_nfs_helm} -f eck-values.yaml -n=eck-nfs
+   # Inside nfs client provisioner helm
+   helm install nfs-client . -f eck-values.yaml -n=eck-nfs
    ```
 
 3. Make sure eck operator is running in elastic-system namespace.
