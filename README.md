@@ -5,7 +5,7 @@ This project IS NOT a helm chart yet !!!
 This project elaborate how to deploy an eck in K8s. Write helm charts for them if needed in the future.
  
 Note:  
-1. ECK cannot be deployed as helm chart yet, please follow the steps below to deploy eck.
+1. ECK is not deployed as helm chart yet, please follow the steps below to deploy eck.
 2. IMPORTANT: DO NOT use "kubectl delete es.yaml" or "kubectl replace --force es.yaml". The data will be lost.
 
 ## ECK Deploy steps
@@ -14,7 +14,7 @@ Note:
 
 2. Deploy nfs in eck-nfs. (nfs helm source: https://linxpa-gitlab00.garmin.com/huangduncan/nfs-client-provisioner.helm)
    ```bash
-   helm install nfs-client {path_to_nfs_helm} -n eck-nfs
+   helm install nfs-client {path_to_nfs_helm} -f eck-values.yaml -n=eck-nfs
    ```
 
 3. Make sure eck operator is running in elastic-system namespace.

@@ -49,4 +49,4 @@ spec:
               requests:
                 # NFS is used and NFS provisioner doesn't restrict the size of the pv
                 storage: 1Mi
-            storageClassName: nfs-client
+            storageClassName: nfs-client-eck
