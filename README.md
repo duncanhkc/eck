@@ -8,7 +8,7 @@ Note:
 1. ECK is not deployed as helm chart yet, please follow the steps below to deploy eck.
 2. IMPORTANT: DO NOT use "kubectl delete es.yaml" or "kubectl replace --force es.yaml". The data will be lost.
 
-Note that branch is mapping to different profile (prod, uat...).
+Note that each branch is mapped to different profile (prod, uat...).
 
 ## ECK Deploy steps
 
