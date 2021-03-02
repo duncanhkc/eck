@@ -44,7 +44,8 @@ Note:
 
 6. Set ingress for es and kibana.
    ```bash
-   kubectl apply -f ingress-es.yaml,ingress-kibana.yaml
+   kubectl apply -f ingress-es.yaml -n=eck-es
+   kubectl apply -f ingress-es.yaml -n=eck-kibana
    ```
    
 7. 修改 etc/hosts 令將 linxta-raes.garmin.com 和 linxta-rakibana.garmin.com 指向任一 Node 之 ip。 (For check only)
