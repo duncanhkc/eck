@@ -28,6 +28,8 @@ spec:
                 runAsUser: 2002
                 runAsGroup: 2002
                 fsGroup: 2002
+                capabilities:
+                  add: ["SYS_CHROOT"]
               resources:
                 limits:
                   # Must be more than twice the value jvm used
