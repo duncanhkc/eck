@@ -17,7 +17,7 @@ metadata:
   namespace: eck-es
 spec:
   rules:
-    - host: linxpa-raes.garmin.com
+    - host: elastic.demo.com
       http:
         paths:
           - backend:
