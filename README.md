@@ -50,6 +50,6 @@ Note that each branch is mapped to different profile (prod, uat...).
    kubectl apply -f ingress-es.yaml -n=eck-kibana
    ```
    
-7. 修改 etc/hosts 令將 linxta-raes.garmin.com 和 linxta-rakibana.garmin.com 指向任一 Node 之 ip。 (For check only)
+7. 修改 etc/hosts 令將 linxpa-raes.garmin.com 和 linxpa-rakibana.garmin.com 指向任一 Node 之 ip。 (For check only)
 
 8. 使用瀏覽器瀏覽 https://linxta-raes.garmin.com 和 https://linxta-rakibana.garmin.com 。(帳密同 step 4)

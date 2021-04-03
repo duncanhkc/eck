@@ -17,7 +17,7 @@ metadata:
   namespace: eck-kibana
 spec:
   rules:
-    - host: linxta-rakibana.garmin.com
+    - host: linxpa-rakibana.garmin.com
       http:
         paths:
           - backend:
@@ -26,4 +26,4 @@ spec:
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - linxta-rakibana.garmin.com
+        - linxpa-rakibana.garmin.com

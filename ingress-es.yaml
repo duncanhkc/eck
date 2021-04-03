@@ -17,7 +17,7 @@ metadata:
   namespace: eck-es
 spec:
   rules:
-    - host: linxta-raes.garmin.com
+    - host: linxpa-raes.garmin.com
       http:
         paths:
           - backend:
@@ -26,4 +26,4 @@ spec:
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - linxta-raes.garmin.com
+        - linxpa-raes.garmin.com

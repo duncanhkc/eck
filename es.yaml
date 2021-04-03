@@ -28,15 +28,15 @@ spec:
                 limits:
                   # Must be more than twice the value jvm used
                   cpu: 1500m
-                  memory: 12Gi
+                  memory: 2Gi
                 requests:
-                  cpu: 1500m
-                  memory: 12Gi
+                  cpu: 200m
+                  memory: 1Gi
               env:
                 - name: ES_JAVA_OPTS
                   # Currently there are bugs if we assign mem more than 8g
-                  value: "-Xms6g -Xmx6g"
-      count: 2
+                  value: "-Xms1g -Xmx1g"
+      count: 1
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data
