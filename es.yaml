@@ -25,8 +25,9 @@ spec:
           containers:
             - name: elasticsearch
               securityContext:
-                capabilities:
-                  add: ["SYS_CHROOT"]
+                runAsUser: 2002
+                runAsGroup: 2002
+                fsGroup: 2002
               resources:
                 limits:
                   # Must be more than twice the value jvm used
