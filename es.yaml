@@ -24,6 +24,9 @@ spec:
               command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
           containers:
             - name: elasticsearch
+              securityContext:
+                capabilities:
+                  add: ["SYS_CHROOT"]
               resources:
                 limits:
                   # Must be more than twice the value jvm used
