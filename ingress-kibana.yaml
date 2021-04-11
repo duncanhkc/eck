@@ -24,6 +24,3 @@ spec:
               serviceName: kibana-kb-http
               servicePort: port1
             pathType: ImplementationSpecific
-  tls:
-    - hosts:
-        - linxpa-rakibana.garmin.com

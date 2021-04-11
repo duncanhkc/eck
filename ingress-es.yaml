@@ -24,6 +24,3 @@ spec:
               serviceName: elasticsearch-es-http
               servicePort: https
             pathType: ImplementationSpecific
-  tls:
-    - hosts:
-        - linxpa-raes.garmin.com
